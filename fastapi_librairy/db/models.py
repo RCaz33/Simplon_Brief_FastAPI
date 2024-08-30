@@ -5,11 +5,11 @@ from db.database import Base
 from sqlalchemy import Column
 
 
-class BdUser(Base):
+class DbUser(Base):
   __tablename__ = 'users'
   id = Column(Integer, primary_key=True, index=True)
-  name = Column(String)
-  surname = Column(String)
+  nom = Column(String)
+  prenom = Column(String)
   password = Column(String)
   items = relationship('DbArticle', back_populates='user')  
 

@@ -10,14 +10,14 @@ class Article(BaseModel):
 
 # User data retrieved from client
 class UserBase(BaseModel):
-  username: str
-  email: str
+  prenom: str
+  nom: str
   password: str
 
 # User data for the response
 class UserDisplay(BaseModel):
-  username: str
-  email: str
+  prenom: str
+  nom: str
   items: List[Article] = []
   model_config = ConfigDict(from_attributes = True)
 

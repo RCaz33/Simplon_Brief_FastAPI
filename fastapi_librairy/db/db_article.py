@@ -1,4 +1,3 @@
-from exceptions import StoryException
 from sqlalchemy.orm.session import Session
 from db.models import DbArticle
 from schemas import ArticleBase
@@ -28,7 +27,7 @@ def get_article(db: Session, id: int):
   return article
 
 # UPDATE
-def update_user(db: Session, id: int, request: Article_update):  # need request to update book status
+def update_user(db: Session, id: int, request: ArticleBase):  # need request to update book status
   article = db.query(DbArticle).filter(DbArticle.id == id)
   if not article.first():
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
