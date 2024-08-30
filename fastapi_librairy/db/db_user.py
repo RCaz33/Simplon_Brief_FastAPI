@@ -4,7 +4,7 @@ from schemas import UserBase
 from db.models import DbUser
 from fastapi import HTTPException, status
 
-
+# CREATE
 def create_user(db: Session, request: UserBase):
   new_user = DbUser(
     username = request.username,
@@ -21,7 +21,7 @@ def create_user(db: Session, request: UserBase):
     raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                         detail="This username or email already registered")
 
-
+# READ
 def get_all_users(db: Session):
   return db.query(DbUser).all()
 
@@ -39,6 +39,7 @@ def get_user_by_username(db: Session, username: str):
       detail=f'User with username {username} not found')
   return user
 
+# UPDATE
 def update_user(db: Session, id: int, request: UserBase):
   user = db.query(DbUser).filter(DbUser.id == id)
   if not user.first():
@@ -52,6 +53,7 @@ def update_user(db: Session, id: int, request: UserBase):
   db.commit()
   return 'ok'
 
+# DELETE
 def delete_user(db: Session, id: int):
   user = db.query(DbUser).filter(DbUser.id == id).first()
   if not user:

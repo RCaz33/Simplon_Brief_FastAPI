@@ -5,20 +5,21 @@ from db.database import Base
 from sqlalchemy import Column
 
 
-class DbUser(Base):
+class BdUser(Base):
   __tablename__ = 'users'
   id = Column(Integer, primary_key=True, index=True)
-  username = Column(String, unique=True)
-  email = Column(String, unique=True)
+  name = Column(String)
+  surname = Column(String)
   password = Column(String)
-  items = relationship('DbArticle', back_populates='user')
+  items = relationship('DbArticle', back_populates='user')  
 
-class DbBook(Base):
+
+
+class DbArticle(Base):
   __tablename__= 'articles'
   id = Column(Integer, primary_key=True, index=True)
-  book_title = Column(String)
-  Book_author = Column(String)
-  book_year = Column(Integer)
-  book_available = Column(Boolean)
+  title = Column(String)
+  autheur = Column(String)
+  isbn = Column(Integer)
   user_id = Column(Integer, ForeignKey('users.id'))
   user = relationship("DbUser", back_populates='items')
